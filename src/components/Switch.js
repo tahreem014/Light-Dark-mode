@@ -1,58 +1,52 @@
-import React, {useState} from 'react'
-import img1 from './Assets/dark.jpg';
-import img2 from './Assets/light.jpg';
+import React from 'react'
 
 export default function Switch() {
-    const [myStyle, setMyStyle] = useState({
+    const [myStyle, setMyStyle] = React.useState({
         color: '#454545',
-        backgroundColor: '#1E90FF'
+        backgroundColor: '#6495ED'
        })
 
-const [btnText, setBtnText] = useState ('light mode')
+const [btnText, setBtnText] = React.useState ('light mode');
+ 
+const [imgIndex, setImgIndex] = React.useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD5dh4-1ir2cizJhRs8Pupn_9_A_yqqOuauMbg50sN4TjMEEa5FH_8ZzX_RWI4TV4pjr0&usqp=CAU");
 
-const [img, setImg] = useState ('true')
-const Img =()=> {
-    if (img.img2==='true'){
-      setImg({img2})
-    }else{
-      setImg({img1})
-    }
-}
-
-
+const [imgText, setImgText] = React.useState("light")
+ 
 const handleClick = ()=> { 
     if (myStyle.color ==='#454545'){
+        
         setMyStyle({
             color: 'white',
-            backgroundColor: '#454545',  
+            backgroundColor: '#0c0c0c',  
         })
         setBtnText("Dark mode");
-        // setImg("img1");
+        setImgIndex("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY7cvOobRu8Flj3AmaLw_Pk1pIY329BP5UUQ&usqp=CAU");
+        setImgText("dark");
     }else {
         setMyStyle({
             color: '#454545',
-            backgroundColor: '#1E90FF'
+            backgroundColor: '#6495ED'
     })
     setBtnText("Light mode");
-    // setImg("img2");
+    setImgIndex("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD5dh4-1ir2cizJhRs8Pupn_9_A_yqqOuauMbg50sN4TjMEEa5FH_8ZzX_RWI4TV4pjr0&usqp=CAU");
+    setImgText("light");
 }
 }
+
   return(
     <div>
       <div className='navbar' style={myStyle}>
     <div className="switch">
     <div className="form-check form-switch">
-  <input className="form-check-input" onClick={handleClick} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+  <input className="form-check-input" onClick={handleClick} type="checkbox" role="switch"
+   id="flexSwitchCheckDefault"/>
   <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={myStyle}>{btnText}</label>
 </div>
 </div>
 </div>
-<div className='image'>
-  
-  <img className="img2" src={img1}  alt='night mode'>{Img}</img>
-  <img className="img1" src={img2} alt='daytime mode'>{Img}</img>
+<div>
+  <img src={imgIndex} alt={imgText} className='img'/>
 </div>
-
    </div>   
   );
 }
